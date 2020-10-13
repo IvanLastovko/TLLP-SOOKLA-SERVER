@@ -21,18 +21,18 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// app.options('*', cors());
-// app.use(function(req, res, next) {
-//    res.header("Access-Control-Allow-Origin", "*");
-//    res.header("Access-Control-Allow-Credentials", true);
-//    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-//    next();
-// });
+app.options('*', cors());
+app.use(function (req, res, next) {
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Credentials", true);
+   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+   next();
+});
 
 // cors({origin: 'https://tllp-sookla.herokuapp.com'})
 
-app.get('/', (req, res) => {
+app.get('/', cors(), (req, res) => {
    res.send('Server working just fine')
 });
 
@@ -98,7 +98,7 @@ app.post('/saveDataToDatabase', (req, res) => {
 
 });
 
-app.post('/getDataFromDatabase', (req, res) => {
+app.post('/getDataFromDatabase', cors(), (req, res) => {
    // console.log(req);
 
    // console.log('THIS WAS PUT INTO REQUEST', req.body.nadal_year);
