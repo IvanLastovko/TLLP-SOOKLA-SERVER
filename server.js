@@ -18,6 +18,7 @@ const db = knex({
 });
 
 const app = express();
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -36,6 +37,7 @@ app.get('/', cors(), (req, res) => {
    res.send('Server working just fine')
 });
 
+app.options('/saveDataToDatabase', cors());
 app.post('/saveDataToDatabase', (req, res) => {
 
    ///// Destructuring req.body /////
@@ -98,6 +100,7 @@ app.post('/saveDataToDatabase', (req, res) => {
 
 });
 
+app.options('/getDataFromDatabase', cors());
 app.post('/getDataFromDatabase', cors(), (req, res) => {
    // console.log(req);
 
