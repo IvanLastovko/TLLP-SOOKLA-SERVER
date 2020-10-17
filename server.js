@@ -22,92 +22,100 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.options('*', cors());
-app.use(function (req, res, next) {
-   res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Credentials", true);
-   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-   next();
-});
+// app.options('*', cors());
+// app.use(function (req, res, next) {
+//    res.header("Access-Control-Allow-Origin", "*");
+//    res.header("Access-Control-Allow-Credentials", true);
+//    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+//    next();
+// });
 
 // cors({origin: 'https://tllp-sookla.herokuapp.com'})
 
-app.get('/', cors(), (req, res) => {
+app.get('/', (req, res) => {
    res.send('Server working just fine')
 });
 
-app.options('/saveDataToDatabase', cors());
 app.post('/saveDataToDatabase', (req, res) => {
 
    ///// Destructuring req.body /////
    console.log(req.body);
 
-   const { nadal_year,
-      mondaybreakfast,
-      mondayvitamin,
-      mondaylunch,
-      mondayoode,
-      tuesdaybreakfast,
-      tuesdayvitamin,
-      tuesdaylunch,
-      tuesdayoode,
-      wednesdaybreakfast,
-      wednesdayvitamin,
-      wednesdaylunch,
-      wednesdayoode,
-      thursdaybreakfast,
-      thursdayvitamin,
-      thursdaylunch,
-      thursdayoode,
-      fridaybreakfast,
-      fridayvitamin,
-      fridaylunch,
-      fridayoode,
-      created_in } = req.body;
+   res.send('All very fine');
 
-   ///// ===================== /////
 
-   db('nadalamenu')
-      .returning('*')
-      .insert({
-         nadal_year: nadal_year,
-         mondaybreakfast: mondaybreakfast,
-         mondayvitamin: mondayvitamin,
-         mondaylunch: mondaylunch,
-         mondayoode: mondayoode,
-         tuesdaybreakfast: tuesdaybreakfast,
-         tuesdayvitamin: tuesdayvitamin,
-         tuesdaylunch: tuesdaylunch,
-         tuesdayoode: tuesdayoode,
-         wednesdaybreakfast: wednesdaybreakfast,
-         wednesdayvitamin: wednesdayvitamin,
-         wednesdaylunch: wednesdaylunch,
-         wednesdayoode: wednesdayoode,
-         thursdaybreakfast: thursdaybreakfast,
-         thursdayvitamin: thursdayvitamin,
-         thursdaylunch: thursdaylunch,
-         thursdayoode: thursdayoode,
-         fridaybreakfast: fridaybreakfast,
-         fridayvitamin: fridayvitamin,
-         fridaylunch: fridaylunch,
-         fridayoode: fridayoode,
-         created_in: created_in
-      })
-      .catch(err => {
-         console.log(err);
-      })
+
+
+
+   // const { nadal_year,
+   //    mondaybreakfast,
+   //    mondayvitamin,
+   //    mondaylunch,
+   //    mondayoode,
+   //    tuesdaybreakfast,
+   //    tuesdayvitamin,
+   //    tuesdaylunch,
+   //    tuesdayoode,
+   //    wednesdaybreakfast,
+   //    wednesdayvitamin,
+   //    wednesdaylunch,
+   //    wednesdayoode,
+   //    thursdaybreakfast,
+   //    thursdayvitamin,
+   //    thursdaylunch,
+   //    thursdayoode,
+   //    fridaybreakfast,
+   //    fridayvitamin,
+   //    fridaylunch,
+   //    fridayoode,
+   //    created_in } = req.body;
+
+   // ///// ===================== /////
+
+   // db('nadalamenu')
+   //    .returning('*')
+   //    .insert({
+   //       nadal_year: nadal_year,
+   //       mondaybreakfast: mondaybreakfast,
+   //       mondayvitamin: mondayvitamin,
+   //       mondaylunch: mondaylunch,
+   //       mondayoode: mondayoode,
+   //       tuesdaybreakfast: tuesdaybreakfast,
+   //       tuesdayvitamin: tuesdayvitamin,
+   //       tuesdaylunch: tuesdaylunch,
+   //       tuesdayoode: tuesdayoode,
+   //       wednesdaybreakfast: wednesdaybreakfast,
+   //       wednesdayvitamin: wednesdayvitamin,
+   //       wednesdaylunch: wednesdaylunch,
+   //       wednesdayoode: wednesdayoode,
+   //       thursdaybreakfast: thursdaybreakfast,
+   //       thursdayvitamin: thursdayvitamin,
+   //       thursdaylunch: thursdaylunch,
+   //       thursdayoode: thursdayoode,
+   //       fridaybreakfast: fridaybreakfast,
+   //       fridayvitamin: fridayvitamin,
+   //       fridaylunch: fridaylunch,
+   //       fridayoode: fridayoode,
+   //       created_in: created_in
+   //    })
+   //    .catch(err => {
+   //       console.log(err);
+   //    })
 
 });
 
-app.options('/getDataFromDatabase', cors());
-app.post('/getDataFromDatabase', cors(), (req, res) => {
+app.post('/getDataFromDatabase', (req, res) => {
    // console.log(req);
 
    // console.log('THIS WAS PUT INTO REQUEST', req.body.nadal_year);
-   db.select().table('nadalamenu').where('nadal_year', req.body.nadal_year).then(data => {
-      res.send(data[data.length - 1]);
-   });
+
+   res.send('All fine');
+
+
+   // db.select().table('nadalamenu').where('nadal_year', req.body.nadal_year).then(data => {
+   //    res.send(data[data.length - 1]);
+   // });
 
 });
 
