@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
    res.send('Server working just fine')
 });
 
-app.post('/saveDataToDatabase', (req, res) => {
+app.get('/saveDataToDatabase', (req, res) => {
 
    ///// Destructuring req.body /////
    console.log(req.body);
@@ -105,7 +105,7 @@ app.post('/saveDataToDatabase', (req, res) => {
 
 });
 
-app.post('/getDataFromDatabase', (req, res) => {
+app.get('/getDataFromDatabase', (req, res) => {
    // console.log(req);
 
    // console.log('THIS WAS PUT INTO REQUEST', req.body.nadal_year);
