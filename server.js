@@ -22,17 +22,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// app.options('*', cors());
-// app.use(function (req, res, next) {
-//    res.header("Access-Control-Allow-Origin", "*");
-//    res.header("Access-Control-Allow-Credentials", true);
-//    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-//    next();
-// });
-
-// cors({origin: 'https://tllp-sookla.herokuapp.com'})
-
 app.get('/', (req, res) => {
    res.send('Server working just fine')
 });
@@ -104,10 +93,14 @@ app.post('/getDataFromDatabase', (req, res) => {
 
    // res.send('OKAY');
 
-   console.log('THIS WAS PUT INTO REQUEST', req.body.nadal_year);
-   db.select().table('nadalamenu').where('nadal_year', req.body.nadal_year).then(data => {
-      res.send(data[data.length - 1]);
-   });
+   db.select()
+      .table('nadalamenu').where('nadal_year', req.body.nadal_year)
+      .then(data => {
+         res.send(data[data.length - 1]);
+      })
+      .catch(error => {
+         res.statusCode(500).send("Problems with Database");
+      });
 
 });
 
