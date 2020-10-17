@@ -37,85 +37,75 @@ app.get('/', (req, res) => {
    res.send('Server working just fine')
 });
 
-app.get('/saveDataToDatabase', (req, res) => {
+app.post('/saveDataToDatabase', (req, res) => {
 
    ///// Destructuring req.body /////
    console.log(req.body);
 
-   res.send('All very fine');
+   const { nadal_year,
+      mondaybreakfast,
+      mondayvitamin,
+      mondaylunch,
+      mondayoode,
+      tuesdaybreakfast,
+      tuesdayvitamin,
+      tuesdaylunch,
+      tuesdayoode,
+      wednesdaybreakfast,
+      wednesdayvitamin,
+      wednesdaylunch,
+      wednesdayoode,
+      thursdaybreakfast,
+      thursdayvitamin,
+      thursdaylunch,
+      thursdayoode,
+      fridaybreakfast,
+      fridayvitamin,
+      fridaylunch,
+      fridayoode,
+      created_in } = req.body;
 
+   ///// ===================== /////
 
-
-
-
-   // const { nadal_year,
-   //    mondaybreakfast,
-   //    mondayvitamin,
-   //    mondaylunch,
-   //    mondayoode,
-   //    tuesdaybreakfast,
-   //    tuesdayvitamin,
-   //    tuesdaylunch,
-   //    tuesdayoode,
-   //    wednesdaybreakfast,
-   //    wednesdayvitamin,
-   //    wednesdaylunch,
-   //    wednesdayoode,
-   //    thursdaybreakfast,
-   //    thursdayvitamin,
-   //    thursdaylunch,
-   //    thursdayoode,
-   //    fridaybreakfast,
-   //    fridayvitamin,
-   //    fridaylunch,
-   //    fridayoode,
-   //    created_in } = req.body;
-
-   // ///// ===================== /////
-
-   // db('nadalamenu')
-   //    .returning('*')
-   //    .insert({
-   //       nadal_year: nadal_year,
-   //       mondaybreakfast: mondaybreakfast,
-   //       mondayvitamin: mondayvitamin,
-   //       mondaylunch: mondaylunch,
-   //       mondayoode: mondayoode,
-   //       tuesdaybreakfast: tuesdaybreakfast,
-   //       tuesdayvitamin: tuesdayvitamin,
-   //       tuesdaylunch: tuesdaylunch,
-   //       tuesdayoode: tuesdayoode,
-   //       wednesdaybreakfast: wednesdaybreakfast,
-   //       wednesdayvitamin: wednesdayvitamin,
-   //       wednesdaylunch: wednesdaylunch,
-   //       wednesdayoode: wednesdayoode,
-   //       thursdaybreakfast: thursdaybreakfast,
-   //       thursdayvitamin: thursdayvitamin,
-   //       thursdaylunch: thursdaylunch,
-   //       thursdayoode: thursdayoode,
-   //       fridaybreakfast: fridaybreakfast,
-   //       fridayvitamin: fridayvitamin,
-   //       fridaylunch: fridaylunch,
-   //       fridayoode: fridayoode,
-   //       created_in: created_in
-   //    })
-   //    .catch(err => {
-   //       console.log(err);
-   //    })
+   db('nadalamenu')
+      .returning('*')
+      .insert({
+         nadal_year: nadal_year,
+         mondaybreakfast: mondaybreakfast,
+         mondayvitamin: mondayvitamin,
+         mondaylunch: mondaylunch,
+         mondayoode: mondayoode,
+         tuesdaybreakfast: tuesdaybreakfast,
+         tuesdayvitamin: tuesdayvitamin,
+         tuesdaylunch: tuesdaylunch,
+         tuesdayoode: tuesdayoode,
+         wednesdaybreakfast: wednesdaybreakfast,
+         wednesdayvitamin: wednesdayvitamin,
+         wednesdaylunch: wednesdaylunch,
+         wednesdayoode: wednesdayoode,
+         thursdaybreakfast: thursdaybreakfast,
+         thursdayvitamin: thursdayvitamin,
+         thursdaylunch: thursdaylunch,
+         thursdayoode: thursdayoode,
+         fridaybreakfast: fridaybreakfast,
+         fridayvitamin: fridayvitamin,
+         fridaylunch: fridaylunch,
+         fridayoode: fridayoode,
+         created_in: created_in
+      })
+      .catch(err => {
+         console.log(err);
+      })
 
 });
 
-app.get('/getDataFromDatabase', (req, res) => {
+app.post('/getDataFromDatabase', (req, res) => {
    // console.log(req);
 
    // console.log('THIS WAS PUT INTO REQUEST', req.body.nadal_year);
-
-   res.send('All fine');
-
-
-   // db.select().table('nadalamenu').where('nadal_year', req.body.nadal_year).then(data => {
-   //    res.send(data[data.length - 1]);
-   // });
+   db.select().table('nadalamenu').where('nadal_year', req.body.nadal_year).then(data => {
+      res.send(data[data.length - 1]);
+   });
 
 });
 
