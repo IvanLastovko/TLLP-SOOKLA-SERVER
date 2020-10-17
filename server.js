@@ -100,11 +100,11 @@ app.post('/saveDataToDatabase', (req, res) => {
 });
 
 app.post('/getDataFromDatabase', (req, res) => {
-   // console.log(req);
+   console.log(req);
 
    // console.log('THIS WAS PUT INTO REQUEST', req.body.nadal_year);
    db.select().table('nadalamenu').where('nadal_year', req.body.nadal_year).then(data => {
-      console.log(data[data.length - 1]);
+      res.send(data[data.length - 1]);
    });
 
 });
