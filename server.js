@@ -99,7 +99,7 @@ app.post('/getDataFromDatabase', (req, res) => {
          res.send(data[data.length - 1]);
       })
       .catch(error => {
-         res.status(500).send("Problems with Database");
+         res.status(500).send(`Running DB here: ${process.env.DATABASE_URL}\nProblems with Database: ${error}`);
       });
 
 });
