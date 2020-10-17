@@ -103,9 +103,9 @@ app.post('/getDataFromDatabase', (req, res) => {
    console.log(req.body);
 
    // console.log('THIS WAS PUT INTO REQUEST', req.body.nadal_year);
-   db.select().table('nadalamenu').where('nadal_year', req.body.nadal_year).then(data => {
-      res.send(data[data.length - 1]);
-   });
+   // db.select().table('nadalamenu').where('nadal_year', req.body.nadal_year).then(data => {
+   //    res.send(data[data.length - 1]);
+   // });
 
 });
 
