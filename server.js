@@ -7,7 +7,7 @@ const db = knex({
    client: 'pg',
    connection: {
       connectionString: process.env.DATABASE_URL,
-      ssl: true
+      ssl: { rejectUnauthorized: false }
    }
    // connection: {
    //    host: '127.0.0.1',
@@ -99,7 +99,7 @@ app.post('/getDataFromDatabase', (req, res) => {
          res.send(data[data.length - 1]);
       })
       .catch(error => {
-         res.status(500).send(`Running DB here: ${process.env.DATABASE_URL}\nProblems with Database: ${error}`);
+         res.status(500).send(`Problems with Database: ${error}`);
       });
 
 });
